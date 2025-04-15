@@ -1,0 +1,13 @@
+<h1><%= @character.name %></h1>
+
+<p><%= @character.description %></p>
+<p>所属: <%= @character.world ? "##{character.world.name}" : '未設定' %></p>
+<% if @character.image_url.present? %>
+  <img src="<%= @character.image_url %>" width="200">
+<% end %>
+
+<hr>
+
+<%= link_to '✏ 編集', edit_character_path(@character) %> |
+<%= link_to '🗑 削除', character_path(@character), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %> |
+<%= link_to '← 一覧へ戻る', characters_path %>

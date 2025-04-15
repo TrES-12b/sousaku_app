@@ -1,0 +1,4 @@
+<div class="field">
+  <%= form.label :world_id, '所属世界観' %><br>
+  <%= form.collection_select :world_id, World.all, :id, :name, prompt: '選択してください' %>
+</div>

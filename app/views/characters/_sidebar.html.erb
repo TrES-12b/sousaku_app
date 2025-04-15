@@ -1,0 +1,6 @@
+<h3>世界観一覧</h3>
+<ul>
+  <% World.all.each do |world| %>
+    <li><%= link_to world.name, world_characters_path(world) %></li>
+  <% end %>
+</ul>
