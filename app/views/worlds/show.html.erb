@@ -1,2 +1,11 @@
-<h1>Worlds#show</h1>
-<p>Find me in app/views/worlds/show.html.erb</p>
+<h1><%= "##{ @world.name }" %> に所属するキャラクター</h1>
+
+<% @characters.each do |character| %>
+  <div>
+    <h2><%= link_to character.name, character_path(character) %></h2>
+    <p><%= character.description %></p>
+    <% if character.image_url.present? %>
+      <img src="<%= character.image_url %>" alt="<%= character.name %>" width="200">
+    <% end %>
+  </div>
+<% end %>
