@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   get "worlds/index"
   get "worlds/show"
   get "characters/index"
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
 end
 
 Rails.application.routes.draw do
+  get "home/index"
   get "worlds/index"
   get "worlds/show"
   resources :characters
