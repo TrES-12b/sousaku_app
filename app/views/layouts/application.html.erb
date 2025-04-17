@@ -25,18 +25,37 @@
   <body>
     <div style="display: flex;">
       <div style="width: 200px; padding: 10px; background-color: #f0f0f0;">
-        <h3>世界観</h3>
+        <h3>メニュー</h3>
         <ul>
-          <% World.all.each do |world| %>
-            <li><%= link_to "##{world.name}", world_path(world) %></li>
-          <% end %>
+          <li><%= link_to 'ホーム', root_path %></li>
+          <li><%= link_to 'プロフィール', '#' %></li>
+
+          <li>
+            <a href="javascript:void(0);" onclick="toggleWorlds()" id="worlds-toggle">世界観 ▼</a>
+            <ul id="worlds-list" style="display: none; padding-left: 15px;">
+              <% World.all.each do |world| %>
+                <li><%= link_to "##{world.name}", world_path(world) %></li>
+              <% end %>
+            </ul>
+          </li>        
         </ul>
       </div>
-      
+
       <div style="flex: 1; padding: 10px;">
         <%= yield %>
       </div>
     </div>
-  </body>
 
+    <script>
+      function toggleWorlds() {
+        const list = document.getElementById("worlds-list");
+        const toggleLink = document.getElementById("worlds-toggle");
+    
+        const isHidden = list.style.display === "none";
+        list.style.display = isHidden ? "block" : "none";
+    
+        toggleLink.textContent = isHidden ? "世界観 ▲" : "世界観 ▼";
+      }
+    </script>
+  </body>
 </html>
