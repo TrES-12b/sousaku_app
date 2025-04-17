@@ -1,2 +1,11 @@
-<h1>Characters#create</h1>
-<p>Find me in app/views/characters/create.html.erb</p>
+Rails.application.routes.draw do
+    root "home#index"
+  
+    resources :worlds, only: [:index, :show] do
+      resources :characters, only: [:index, :new, :create]
+    end
+  
+    # キャラの個別機能は残す
+    resources :characters, only: [:show, :edit, :update, :destroy]
+  end
+  

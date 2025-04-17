@@ -1,23 +1,16 @@
 class CharactersController < ApplicationController
-  def index
-    if params[:world_id]
-      @world = World.find(params[:world_id])
-      @characters = @world.characters
-    else
-      @characters = Character.all
-    end
-  end
-
   def show
-    @character = Character.find(params[:id])  # ← showにもキャラ取得が必要！
+    @character = Character.find(params[:id])
   end
 
   def new
-    @character = Character.new
+    @world = World.find(params[:world_id])
+    @character = @world.characters.build
   end
 
   def create
-    @character = Character.new(character_params)
+    @world = World.find(params[:world_id])
+    @character = @world.characters.build(character_params)
     if @character.save
       redirect_to @character, notice: 'キャラクターが作成されました！'
     else
@@ -41,12 +34,12 @@ class CharactersController < ApplicationController
   def destroy
     @character = Character.find(params[:id])
     @character.destroy
-    redirect_to characters_path, notice: 'キャラクターが削除されました。'
+    redirect_to root_path, notice: 'キャラクターが削除されました。'
   end
 
   private
 
   def character_params
-    params.require(:character).permit(:name, :description, :world_id, :image_url)
+    params.require(:character).permit(:name, :description, :image_url, :world_id)
   end
 end
