@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "profile/show"
   # ホーム画面をトップに設定
   root "home#index"
 
