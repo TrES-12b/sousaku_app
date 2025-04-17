@@ -1,7 +1,7 @@
 <h1><%= @character.name %></h1>
 
 <p><%= @character.description %></p>
-<p>所属: <%= @character.world ? "##{character.world.name}" : '未設定' %></p>
+<p>所属: <%= @character.world ? "##{@character.world.name}" : '未設定' %></p>
 <% if @character.image_url.present? %>
   <img src="<%= @character.image_url %>" width="200">
 <% end %>
