@@ -24,30 +24,18 @@
   </head>
 
   <body>
-    <div class="sidebar">
-      <div style="display: flex;">
-        <div style="width: 200px; padding: 10px; background-color: #f0f0f0;">
-          <h3>Menu</h3>
-          <ul>
-            <li><%= link_to 'home', root_path %></li>
-            <li><%= link_to 'profile', profile_path %></li>
+    <%= render 'layouts/header' %>
 
-            <li>
-              <a href="javascript:void(0);" onclick="toggleWorlds()" id="worlds-toggle">world ▼</a>
-              <ul id="worlds-list" style="display: none; padding-left: 15px;">
-                <% World.all.each do |world| %>
-                  <li><%= link_to "##{world.name}", world_path(world) %></li>
-                <% end %>
-              </ul>
-            </li>        
-          </ul>
-        </div>
-
-        <div style="flex: 1; padding: 10px;">
-          <%= yield %>
-        </div>
+    <div class="main-container" style="display: flex;">
+      <div class="sidebar">
+        <%= render 'layouts/sidebar' %>
       </div>
+      <main style="flex: 1; padding: 10px;">
+        <%= yield %>
+      </main>
     </div>
+
+    <%= render 'layouts/footer' %>
 
     <script>
       function toggleWorlds() {
