@@ -1,0 +1,20 @@
+<header style="background-color: #333; color: white; padding: 10px;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- サイト名 -->
+    <h1 style="margin: 0; font-size: 1.5rem;">
+      <%= link_to "NarraLog", root_path, style: "color: white; text-decoration: none;" %>
+    </h1>
+
+    <!-- 仮のログインUI（Devise未導入用） -->
+    <div>
+      <!-- 将来的には if user_signed_in? などに差し替え -->
+      <% if false %>
+        <span style="margin-right: 10px;">Welcome, ユーザー名.</span>
+        <%= link_to 'Logout', "#", style: "color: white;" %>
+      <% else %>
+        <%= link_to 'Login', "#", style: "color: white; margin-right: 10px;" %>
+        <%= link_to 'Signup', "#", style: "color: white;" %>
+      <% end %>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,16 @@
+<div style="width: 200px; padding: 10px; background-color: #f0f0f0;">
+  <h3>Menu</h3>
+  <ul>
+    <li><%= link_to 'home', root_path %></li>
+    <li><%= link_to 'profile', profile_path %></li>
+
+    <li>
+      <a href="javascript:void(0);" onclick="toggleWorlds()" id="worlds-toggle">world ▼</a>
+      <ul id="worlds-list" style="display: none; padding-left: 15px;">
+        <% World.all.each do |world| %>
+          <li><%= link_to "##{world.name}", world_path(world) %></li>
+        <% end %>
+      </ul>
+    </li>        
+  </ul>
+</div>
