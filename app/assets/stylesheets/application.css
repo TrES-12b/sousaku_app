@@ -7,10 +7,30 @@ li{
     list-style: none;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.main-wrapper {
+display: flex;
+flex-direction: column;
+min-height: 100vh; /* 画面全体の高さに合わせる */
+}
+
+.main-content {
+flex: 1; /* 余ったスペースを埋める */
+display: flex;
+align-items: stretch;
+}
+  
+
+/* サイドバー */
 .sidebar {
+    width: 200px;
     background-color: #f5f5f5;
     padding: 20px;
-    border-radius: 8px;
+    box-sizing: border-box;
   }
   
   .sidebar a {
@@ -22,6 +42,7 @@ li{
   .sidebar a:hover {
     color: #007bff;
   }
+
   
   /* SNSリンク */
   .fa-brands {
@@ -31,3 +52,13 @@ li{
   .fa-brands:hover {
     color: #007bff;
   }
+
+
+  /* キャラ表示 */
+  .character-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background-color: #fff;
+  }  

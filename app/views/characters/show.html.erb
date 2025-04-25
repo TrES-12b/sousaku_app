@@ -8,6 +8,8 @@
 
 <hr>
 
-<%= link_to '✏ 編集', edit_character_path(@character) %> |
-<%= link_to '🗑 削除', character_path(@character), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %> |
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to '✏ 編集', edit_character_path(@character) %> |
+  <%= link_to '🗑 削除', character_path(@character), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %> |
+<% end %>
 <%= link_to '← 一覧へ戻る', characters_path %>

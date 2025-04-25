@@ -1,0 +1,35 @@
+<h1>キャラクター一覧（管理者）</h1>
+
+<%= link_to '＋ 新規キャラクター作成', new_admin_character_path, class: "button" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>説明</th>
+      <th>所属世界観</th>
+      <th>画像</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @characters.each do |character| %>
+      <tr>
+        <td><%= character.name %></td>
+        <td><%= truncate(character.description, length: 50) %></td>
+        <td><%= character.world&.name || "未設定" %></td>
+        <td>
+          <% if character.image_url.present? %>
+            <img src="<%= character.image_url %>" alt="Image" style="height: 50px;">
+          <% else %>
+            （なし）
+          <% end %>
+        </td>
+        <td>
+          <%= link_to '編集', edit_admin_character_path(character) %> |
+          <%= link_to '削除', admin_character_path(character), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
