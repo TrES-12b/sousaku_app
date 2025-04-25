@@ -1,4 +1,8 @@
-<h1><%= @profile.name %>のプロフィール</h1>
+<% if @profile.user.name.present? %>
+  <h1><%= @profile.user.name %>のプロフィール</h1>
+<% else %>
+  <h1>プロフィール</h1>
+<% end %>
 <p><%= @profile.bio %></p>
 
 <%= link_to "プロフィールを編集", edit_profile_path %>

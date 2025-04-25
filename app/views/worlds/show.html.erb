@@ -1,11 +1,14 @@
-<h1><%= "##{ @world.name }" %> に所属するキャラクター</h1>
+
+<h1><span class="world-name">#<%= @world.name %></span> に所属するキャラクター</h1>
 
 <% @characters.each do |character| %>
-  <div>
+  <div class="character-card">
     <h2><%= link_to character.name, character_path(character) %></h2>
-    <p><%= character.description %></p>
+
     <% if character.image_url.present? %>
-      <img src="<%= character.image_url %>" alt="<%= character.name %>" width="200">
+      <img src="<%= character.image_url %>" alt="<%= character.name %>" width="200" style="margin-bottom: 10px;">
     <% end %>
+
+    <p><%= character.description %></p>
   </div>
 <% end %>

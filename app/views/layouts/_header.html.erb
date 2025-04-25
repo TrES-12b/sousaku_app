@@ -5,11 +5,10 @@
       <%= link_to "NarraLog", root_path, style: "color: white; text-decoration: none;" %>
     </h1>
 
-    <!-- 仮のログインUI（Devise未導入用） -->
     <div>
       <% if user_signed_in? %>
-        <span style="margin-right: 10px;">Welcome, <%= current_user.email %>.</span>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, style: "color: white;" %>
+        <span style="margin-right: 10px;">Welcome, <%= current_user.name.presence || current_user.email %></span>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete, form: { style: "display: inline;" }, style: "color: white; background: none; border: none; padding: 0;" %>
       <% else %>
         <%= link_to 'Login', new_user_session_path, style: "color: white; margin-right: 10px;" %>
         <%= link_to 'Signup', new_user_registration_path, style: "color: white;" %>
