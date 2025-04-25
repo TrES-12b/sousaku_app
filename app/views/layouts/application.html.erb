@@ -24,18 +24,21 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-
-    <div class="main-container" style="display: flex;">
-      <div class="sidebar">
-        <%= render 'layouts/sidebar' %>
+    <div class="main-wrapper">
+      <%= render 'layouts/header' %>
+      <div class="main-content">
+        <div class="main-container" style="display: flex;">
+          <div class="sidebar">
+            <%= render 'layouts/sidebar' %>
+          </div>
+          <main style="flex: 1; padding: 10px;">
+            <%= yield %>
+          </main>
+        </div>
       </div>
-      <main style="flex: 1; padding: 10px;">
-        <%= yield %>
-      </main>
-    </div>
 
-    <%= render 'layouts/footer' %>
+      <%= render 'layouts/footer' %>
+    </div>
 
     <script>
       function toggleWorlds() {
