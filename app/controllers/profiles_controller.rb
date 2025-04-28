@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!  # Deviseでログイン必須に
   before_action :set_profile
 
   def show; end
@@ -6,17 +7,18 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    if @profile.update(profile_params)
+    # ユーザー名も一緒に更新
+    if @profile.update(profile_params) && current_user.update(name: params[:user_name])
       redirect_to profile_path, notice: 'プロフィールが更新されました！'
     else
       render :edit, status: :unprocessable_entity
     end
-  end
+  end  
 
   private
 
   def set_profile
-    @profile = Profile.first_or_create(name: "デフォルト名前", bio: "自己紹介を追加してください")
+    @profile = current_user.profile || current_user.build_profile
   end
 
   def profile_params

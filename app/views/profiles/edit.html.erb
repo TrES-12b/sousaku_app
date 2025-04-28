@@ -1,13 +1,13 @@
 <h1>プロフィールを編集</h1>
 
-<%= form_with model: @profile, local: true do |form| %>
+<%= form_with model: @profile, url: profile_path, method: :patch, local: true do |form| %>
   <div>
-    <%= form.label :name, "名前" %><br>
-    <%= form.text_field :name %>
+    <%= form.label :user_name, "ユーザーネーム（表示名）" %><br />
+    <%= text_field_tag :user_name, @profile.user.name %>
   </div>
 
   <div>
-    <%= form.label :bio, "自己紹介" %><br>
+    <%= form.label :bio, "自己紹介" %><br />
     <%= form.text_area :bio %>
   </div>
 
