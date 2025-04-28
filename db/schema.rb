@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_24_050057) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_28_015647) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -20,6 +20,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_050057) do
     t.datetime "updated_at", null: false
     t.integer "world_id"
     t.integer "user_id"
+    t.string "color_code"
+    t.string "theme_song"
     t.index ["user_id"], name: "index_characters_on_user_id"
     t.index ["world_id"], name: "index_characters_on_world_id"
   end
