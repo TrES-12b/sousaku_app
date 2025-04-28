@@ -1,0 +1,14 @@
+<h1>世界観管理画面</h1>
+
+<p>ここから世界観を管理できます！</p>
+
+<%= link_to '新しい世界観を作成', new_admin_world_path, class: "button" %>
+
+<% @worlds.each do |world| %>
+  <div>
+    <h2><%= world.name %></h2>
+    <p><%= world.description %></p>
+    <%= link_to '編集', edit_admin_world_path(world) %> |
+    <%= link_to '削除', admin_world_path(world), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  </div>
+<% end %>

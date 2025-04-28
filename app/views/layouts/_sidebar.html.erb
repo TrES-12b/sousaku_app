@@ -1,15 +1,21 @@
 <h3>Menu</h3>
-  <ul>
-    <li><%= link_to 'home', root_path %></li>
-    <li><%= link_to 'profile', profile_path %></li>
+<ul>
+  <li><%= link_to 'home', root_path %></li>
+  <li><%= link_to 'profile', profile_path %></li>
 
-    <li>
-      <a href="javascript:void(0);" onclick="toggleWorlds()" id="worlds-toggle">world ▼</a>
-      <ul id="worlds-list" style="display: none; padding-left: 15px;">
-        <% World.all.each do |world| %>
-          <li><%= link_to "##{world.name}", world_path(world) %></li>
-        <% end %>
-      </ul>
-    </li>        
-  </ul>
-</div>
+  <li>
+    <a href="javascript:void(0);" onclick="toggleWorlds()" id="worlds-toggle">world ▼</a>
+    <ul id="worlds-list" style="display: none; padding-left: 15px;">
+      <% World.all.each do |world| %>
+        <li><%= link_to "##{world.name}", world_path(world) %></li>
+      <% end %>
+    </ul>
+  </li>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <hr>
+    <li><strong>【管理者用】</strong></li>
+    <li><%= link_to '世界観管理', admin_worlds_path %></li>
+    <li><%= link_to 'キャラクター管理', admin_characters_path %></li>
+  <% end %>
+</ul>
