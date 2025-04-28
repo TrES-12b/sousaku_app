@@ -12,13 +12,23 @@
   </div>
 
   <div>
-    <%= form.label :world, "世界観" %><br>
-    <%= form.text_field :world %>
+    <%= form.label :world_id, "世界観" %><br>
+    <%= form.collection_select :world_id, World.all, :id, :name, prompt: '選択してください' %>
   </div>
 
   <div>
     <%= form.label :image_url, "画像URL（任意）" %><br>
     <%= form.text_field :image_url %>
+  </div>
+
+  <div>
+    <%= form.label :color_code, "イメージカラー（カラーコード）" %><br>
+    <%= form.color_field :color_code %>
+  </div>
+
+  <div>
+    <%= form.label :theme_song, "イメージソング（任意）" %><br>
+    <%= form.text_field :theme_song, placeholder: "曲名やYouTubeリンクなど" %>
   </div>
 
   <div>
