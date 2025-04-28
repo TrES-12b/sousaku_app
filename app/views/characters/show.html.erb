@@ -2,6 +2,21 @@
 
 <p><%= @character.description %></p>
 <p>所属: <%= @character.world ? "##{@character.world.name}" : '未設定' %></p>
+
+<% if @character.color_code.present? %>
+  <p>イメージカラー: <span style="display: inline-block; width: 20px; height: 20px; background-color: <%= @character.color_code %>;"></span> <%= @character.color_code %></p>
+<% end %>
+
+<% if @character.theme_song.present? %>
+  <p>イメージソング: 
+    <% if @character.theme_song.include?("youtube.com") || @character.theme_song.include?("youtu.be") %>
+      <%= link_to "YouTubeで聴く", @character.theme_song, target: "_blank", rel: "noopener" %>
+    <% else %>
+      <%= @character.theme_song %>
+    <% end %>
+  </p>
+<% end %>
+
 <% if @character.image_url.present? %>
   <img src="<%= @character.image_url %>" width="200">
 <% end %>

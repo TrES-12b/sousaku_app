@@ -18,9 +18,9 @@ module Admin
       end
   
       private
-  
+
       def character_params
-        params.require(:character).permit(:name, :description, :world_id)
-      end
+        params.require(:character).permit(:name, :description, :world_id, :image_url, :color_code, :theme_song)
+      end      
     end
   end  
