@@ -13,13 +13,17 @@
 <% end %>
 
 <% if @character.theme_song.present? %>
-  <p>イメージソング: 
-    <% if @character.theme_song.include?("youtube.com") || @character.theme_song.include?("youtu.be") %>
-      <%= link_to "YouTubeで聴く", @character.theme_song, target: "_blank", rel: "noopener" %>
-    <% else %>
-      <%= @character.theme_song %>
+  <p>イメージソング:</p>
+  <% video_id = youtube_video_id(@character.theme_song) %>
+  <% if video_id %>
+    <%= link_to @character.theme_song, target: "_blank", rel: "noopener" do %>
+      <img src="https://img.youtube.com/vi/<%= video_id %>/hqdefault.jpg" width="320">
     <% end %>
-  </p>
+    <p><strong><%= @character.theme_title.presence || "（曲名未設定）" %></strong></p>
+  <% else %>
+    <%= link_to "YouTubeで聴く", @character.theme_song, target: "_blank", rel: "noopener" %>
+    <p><strong><%= @character.theme_title.presence || "" %></strong></p>
+  <% end %>
 <% end %>
 
 <% if @character.image_url.present? %>
@@ -32,4 +36,4 @@
   <%= link_to '✏ 編集', edit_admin_character_path(@character) %> |
   <%= link_to '🗑 削除', character_path(@character), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %> |
 <% end %>
-<%= link_to '← 一覧へ戻る', characters_path %>
+<%= link_to "← #{@character.world&.name} の一覧へ戻る", world_path(@character.world) %>
