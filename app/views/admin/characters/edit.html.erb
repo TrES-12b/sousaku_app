@@ -1,4 +1,4 @@
-<h1>キャラクターを新しく作成</h1>
+<h1>キャラクターを編集</h1>
 
 <%= form_with model: [:admin, @character], local: true do |form| %>
   <div>
@@ -7,9 +7,18 @@
   </div>
 
   <div>
+    <%= form.label :icon, "イメージマーク（Font Awesomeクラス名）" %><br>
+    <%= form.text_field :icon, placeholder: "例：apple、dove、lemonなど" %>
+  </div>
+
+
+  <div>
     <%= form.label :description, "説明" %><br>
     <%= form.text_area :description %>
   </div>
+
+  <div class="mb-3">
+  <%= form.label :world_id, "世界観" %><br>
 
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="worldDropdown">
@@ -26,10 +35,15 @@
     </ul>
   </div>
 
-  <div>
-    <%= form.label :icon, "イメージマーク（Font Awesomeクラス名）" %><br>
-    <%= form.text_field :icon, placeholder: "例：apple、dove、lemonなど" %>
+  <%= form.hidden_field :world_id, id: "selectedWorldId" %>
   </div>
+
+  <script>
+  function selectWorld(id, name) {
+    document.getElementById('selectedWorldId').value = id;
+    document.getElementById('worldDropdown').textContent = name;
+  }
+  </script>
 
   <div>
     <%= form.label :image_url, "画像URL（任意）" %><br>
@@ -47,8 +61,8 @@
   </div>
 
   <div>
-    <%= form.submit "作成" %>
+    <%= form.submit "更新する" %>
   </div>
 <% end %>
 
-<%= link_to '← 一覧に戻る', admin_characters_path %>
+<%= link_to '← 詳細へ戻る', @character %>

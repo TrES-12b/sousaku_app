@@ -1,4 +1,9 @@
-<h1><%= @character.name %></h1>
+<h1>
+  <% if @character.icon.present? %>
+    <i class="fas fa-<%= @character.icon %>" style="color: <%= @character.color_code %>; margin-left: 8px;"></i>
+  <% end %>
+  <%= @character.name %>
+</h1>
 
 <p><%= @character.description %></p>
 <p>所属: <%= @character.world ? "##{@character.world.name}" : '未設定' %></p>
@@ -24,7 +29,7 @@
 <hr>
 
 <% if user_signed_in? && current_user.admin? %>
-  <%= link_to '✏ 編集', edit_character_path(@character) %> |
+  <%= link_to '✏ 編集', edit_admin_character_path(@character) %> |
   <%= link_to '🗑 削除', character_path(@character), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %> |
 <% end %>
 <%= link_to '← 一覧へ戻る', characters_path %>
